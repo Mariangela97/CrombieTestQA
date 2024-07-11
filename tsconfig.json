@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "lib": ["es6", "dom"],
+    "types": ["cypress", "node"],
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "preserveValueImports": false
+  },
+  "include": ["**/*.ts"]
+}
