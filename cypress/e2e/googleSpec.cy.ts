@@ -2,7 +2,8 @@ describe("Google Search Spec", () => {
   const searchBoxSelector = 'textarea[aria-label]';
   const urls = {
     discordExact: "https://discord.com/",
-    youtubeExact: "https://m.youtube.com/?hl=es",
+    youtubeExactES: "https://m.youtube.com/?hl=es", // Use this variable for local (ES) tests
+    youtubeExactEN: "https://www.youtube.com/", // Use this variable for github actions (EN)   
     discordPartial: "discord.com",
     youtubePartial: "youtube.com",
   };
@@ -35,7 +36,7 @@ describe("Google Search Spec", () => {
   }
 
   testSearch("discord", urls.discordExact, true);
-  testSearch("youtube", urls.youtubeExact, true);
+  testSearch("youtube", urls.youtubeExactEN, true);
   testSearch("discord", urls.discordPartial);
   testSearch("youtube", urls.youtubePartial);
 });
