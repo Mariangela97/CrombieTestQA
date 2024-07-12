@@ -1,5 +1,5 @@
 describe("Google Search Spec", () => {
-  const searchBoxSelector = 'textarea[aria-label="Buscar"';
+  const searchBoxSelector = 'textarea[aria-label]';
   const urls = {
     discordExact: "https://discord.com/",
     youtubeExact: "https://m.youtube.com/?hl=es",
