@@ -1,7 +1,8 @@
 name: Daily Cypress Test
 on:
   schedule:
-    - cron: 00 6 * * *
+    - cron: 00 22 * * * # 17:00 GMT-5 (22:00 UTC)
+
   workflow_dispatch: null
 jobs:
   cypress-run:
@@ -14,8 +15,6 @@ jobs:
         with:
           node-version: "22"
       - name: Install dependencies
-        run: npm install
-      - name: Install pnpm
-        run: npm install -g pnpm
+        run: npm ci
       - name: Run Cypress tests
         run: pnpm cypress run

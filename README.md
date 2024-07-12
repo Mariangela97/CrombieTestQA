@@ -21,7 +21,7 @@ This project is configured to use Cypress with TypeScript for end-to-end testing
 
 3. Install project:
 
-  - npm install
+  - npm ci
 
 ## Running Cypress Tests
 
