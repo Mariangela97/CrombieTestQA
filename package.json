@@ -15,5 +15,8 @@
     "@types/node": "^20.14.10",
     "cypress": "^13.13.0",
     "typescript": "^5.5.3"
+  },
+  "dependencies": {
+    "pnpm": "^9.5.0"
   }
 }
