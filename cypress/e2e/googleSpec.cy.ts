@@ -35,8 +35,21 @@ describe("Google Search Spec", () => {
     });
   }
 
+  function testSearchExpectXResults(query: string, numberOfResults: number) {
+    it(`Verify Google search returns at least ${numberOfResults} Results`, () => {
+      cy.get("@searchBox").type(`${query} {enter}`);
+      cy.get("#search div")
+        .eq(1)
+        .children()
+        .should("have.length.at.least", numberOfResults);
+    });
+  }
+
   testSearch("discord", urls.discordExact, true);
   testSearch("youtube", urls.youtubeExactEN, true);
   testSearch("discord", urls.discordPartial);
   testSearch("youtube", urls.youtubePartial);
+
+  testSearchExpectXResults("discord", 5);
+  testSearchExpectXResults("youtube", 5);
 });
