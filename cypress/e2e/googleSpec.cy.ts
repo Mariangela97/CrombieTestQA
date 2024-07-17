@@ -37,11 +37,14 @@ describe("Google Search Spec", () => {
 
   function testSearchExpectXResults(query: string, numberOfResults: number) {
     it(`Verify Google search returns at least ${numberOfResults} Results`, () => {
-      cy.get("@searchBox").type(`${query} {enter}`);
-      cy.get("#search div")
-        .eq(1)
-        .children()
-        .should("have.length.at.least", numberOfResults);
+      cy.get("@searchBox")
+        .type(`${query} {enter}`)
+        .then(() => {
+          cy.get("#search div")
+            .eq(1)
+            .children()
+            .should("have.length.at.least", numberOfResults);
+        });
     });
   }
 
