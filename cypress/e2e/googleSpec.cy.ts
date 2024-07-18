@@ -1,9 +1,9 @@
 describe("Google Search Spec", () => {
-  const searchBoxSelector = 'textarea[aria-label]';
+  const searchBoxSelector = "textarea[aria-label]";
   const urls = {
     discordExact: "https://discord.com/",
     youtubeExactES: "https://m.youtube.com/?hl=es", // Use this variable for local (ES) tests
-    youtubeExactEN: "https://www.youtube.com/", // Use this variable for github actions (EN)   
+    youtubeExactEN: "https://www.youtube.com/", // Use this variable for github actions (EN)
     discordPartial: "discord.com",
     youtubePartial: "youtube.com",
   };
@@ -40,10 +40,11 @@ describe("Google Search Spec", () => {
       cy.get("@searchBox")
         .type(`${query} {enter}`)
         .then(() => {
-          cy.get("#search div")
-            .eq(1)
-            .children()
-            .should("have.length.at.least", numberOfResults);
+          cy.get("#search")
+            .should("be.visible")
+            .within(() => {
+              cy.get("div.g").should("have.length.at.least", numberOfResults);
+            });
         });
     });
   }
