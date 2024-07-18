@@ -13,11 +13,17 @@ describe("Google Search Spec", () => {
     cy.get(searchBoxSelector).as("searchBox");
   });
 
-  function testSearch(
-    query: string,
-    expectedHref: string,
-    exact: boolean = false
-  ) {
+  interface TestSearchParams {
+    query: string;
+    expectedHref: string;
+    exact?: boolean;
+  }
+
+  function testSearch({
+    query,
+    expectedHref,
+    exact = false,
+  }: TestSearchParams) {
     it(`testing ${query} search${exact ? " with exact URL" : ""}`, () => {
       cy.get("@searchBox")
         .type(`${query} {enter}`)
@@ -49,11 +55,14 @@ describe("Google Search Spec", () => {
     });
   }
 
-  testSearch("discord", urls.discordExact, true);
-  testSearch("youtube", urls.youtubeExactEN, true);
-  testSearch("discord", urls.discordPartial);
-  testSearch("youtube", urls.youtubePartial);
+  const tests: TestSearchParams[] = [
+    { query: "discord", expectedHref: urls.discordExact, exact: true },
+    { query: "youtube", expectedHref: urls.youtubeExactEN, exact: true },
+    { query: "discord", expectedHref: urls.discordPartial },
+    { query: "youtube", expectedHref: urls.youtubePartial },
+  ];
 
+  tests.forEach((test) => testSearch(test));
   testSearchExpectXResults("discord", 5);
   testSearchExpectXResults("youtube", 5);
 });
